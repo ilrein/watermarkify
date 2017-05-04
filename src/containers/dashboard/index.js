@@ -2,10 +2,13 @@
 // Dashboard =)
 //
 import React, { Component } from 'react';
+import queryString from 'query-string';
 
 class Dashboard extends Component {
   componentDidMount() {
-    console.log(this.props);
+    console.log(
+      queryString.parse(this.props.location.search)
+    );
   }
 
   render() {
