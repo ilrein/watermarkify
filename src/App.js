@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import ShopifyToken from 'shopify-token';
 import 'semantic-ui-css/semantic.min.css';
 
 import Hero from './ui/hero';
 
+const token = require('./token');
+
 class App extends Component {
-  componentWillMount() {
-    console.log(ShopifyToken);
-  }
   render() {
+    console.log(token);
     return (
       <div className="App">
         <Hero />
