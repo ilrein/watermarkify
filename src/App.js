@@ -3,11 +3,19 @@ import 'semantic-ui-css/semantic.min.css';
 
 import Hero from './ui/hero';
 
-const token = require('./token');
+const ShopifyToken = require('./token');
 
 class App extends Component {
+  componentWillMount() {
+    const shopifyToken = new ShopifyToken({
+      sharedSecret: process.env.REACT_APP_SHARED_SECRET,
+      redirectUri: process.env.REACT_APP_REDIRECT_URI,
+      apiKey: process.env.REACT_APP_API_KEY
+    });
+    console.log(shopifyToken);
+  }
+
   render() {
-    console.log(token);
     return (
       <div className="App">
         <Hero />
