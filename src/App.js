@@ -4,6 +4,9 @@ import 'semantic-ui-css/semantic.min.css';
 // Page Sections
 import Hero from './ui/hero';
 import HowItWorks from './ui/how-it-works';
+import Pricing from './ui/pricing';
+import Signup from './ui/signup';
+import MadeBy from './ui/made-by';
 
 const ShopifyToken = require('./token');
 
@@ -23,6 +26,15 @@ class App extends Component {
         <Hero />
         <section>
           <HowItWorks />
+        </section>
+        <section>
+          <Pricing />
+        </section>
+        <section>
+          <Signup />
+        </section>
+        <section>
+          <MadeBy />
         </section>
       </main>
     );

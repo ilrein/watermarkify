@@ -1,0 +1,18 @@
+.container {
+  margin-top: 4rem;
+  display: flex !important;
+  background: #56CCF2;
+}
+
+.col {
+  flex: 50%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem;
+}
+
+.header {
+  color: white !important;
+}
