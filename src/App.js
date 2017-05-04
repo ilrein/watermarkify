@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  Switch,
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
+
+// CSS
 import 'semantic-ui-css/semantic.min.css';
 
-// Page Sections
-import Hero from './ui/hero';
-import HowItWorks from './ui/how-it-works';
-import Pricing from './ui/pricing';
-import Signup from './ui/signup';
-import MadeBy from './ui/made-by';
+// Containers
+import Home from './containers/home';
+import Dashboard from './containers/dashboard';
 
+// Redux
+import initializeApplication from './actions/initializeApplication';
+
+// Shopify API
 const ShopifyToken = require('./token');
 
 class App extends Component {
@@ -17,28 +26,30 @@ class App extends Component {
       redirectUri: process.env.REACT_APP_REDIRECT_URI,
       apiKey: process.env.REACT_APP_API_KEY
     });
-    console.log(shopifyToken);
+    this.props.initializeApplication(shopifyToken);
   }
 
   render() {
     return (
-      <main className="App">
-        <Hero />
-        <section>
-          <HowItWorks />
-        </section>
-        <section>
-          <Pricing />
-        </section>
-        <section>
-          <Signup />
-        </section>
-        <section>
-          <MadeBy />
-        </section>
-      </main>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/dashboard" component={Dashboard} />
+        </Switch>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  initializeApplication(token) {
+    dispatch(initializeApplication(token))
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
