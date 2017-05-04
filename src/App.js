@@ -21,6 +21,7 @@ const ShopifyToken = require('./token');
 
 class App extends Component {
   componentWillMount() {
+    console.log('version: 1.0.1');
     const shopifyToken = new ShopifyToken({
       sharedSecret: process.env.REACT_APP_SHARED_SECRET,
       redirectUri: process.env.REACT_APP_REDIRECT_URI,
