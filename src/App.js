@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 
+// Page Sections
 import Hero from './ui/hero';
+import HowItWorks from './ui/how-it-works';
 
 const ShopifyToken = require('./token');
 
@@ -17,9 +19,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <main className="App">
         <Hero />
-      </div>
+        <section>
+          <HowItWorks />
+        </section>
+      </main>
     );
   }
 }

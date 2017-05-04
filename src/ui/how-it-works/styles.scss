@@ -1,0 +1,28 @@
+$teal: #53C7F2;
+
+.main {
+  // height: 20rem;
+}
+
+.header {
+  text-align: center;
+  padding: 4rem !important;
+  color: $teal !important;
+}
+
+.col {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.step {
+  font-size: 3rem !important;
+  color: $teal;
+}
+
+.caption {
+  margin-top: 1rem;
+  color: $teal;
+}
