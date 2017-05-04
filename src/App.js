@@ -31,7 +31,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router basename="/watermarkify">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/dashboard" component={Dashboard} />
