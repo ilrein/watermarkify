@@ -25,8 +25,10 @@ class Callback extends Component {
         console.log('checks passed...');
         fetch('https://us-central1-watermarkify.cloudfunctions.net/helloWorld')
           .then(response => response.json())
-          .then(json => console.log(json))
-          .catch(e => console.log(e));
+        //   .then(json => console.log(json))
+        //   .catch(e => console.log(e));
+
+
         // shopifyToken.getAccessToken(query.shop, query.code)
         //   .then((token) => {
         //     console.log('got token', token);
