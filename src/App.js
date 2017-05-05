@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 // Containers
 import Home from './containers/home';
 import Dashboard from './containers/dashboard';
+import Callback from './containers/callback';
 
 // Redux
 import initializeApplication from './actions/initializeApplication';
@@ -36,6 +37,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/callback" component={Callback} />
         </Switch>
       </Router>
     );
