@@ -27,17 +27,27 @@ class Callback extends Component {
           .catch((err) => {
             console.log('err', err);
           })
-        // fetch(`${query.shop}/auth/token`, {
+          
+        // const url = `https://${query.shop}/admin/oauth/access_token`;
+        // fetch(url, {
+        //   method: 'POST',
         //   headers: {
         //     code: query.code,
         //     hmac: query.hmac,
         //     shop: query.shop,
         //     state: query.state,
         //     timestamp: query.timestamp,
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
         //   },
+        //   body: JSON.stringify({
+        //     client_id: process.env.REACT_APP_API_KEY,
+        //     client_secret: process.env.REACT_APP_SHARED_SECRET,
+        //     code: query.code,
+        //   })
         // })
         // .then(data => data.json())
-        // .then(data => console.log(data))
+        // .then(json => console.log(json))
         // .catch(e => console.log('error!', e));
       });
     }

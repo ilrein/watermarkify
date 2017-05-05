@@ -17,6 +17,9 @@ import Callback from './containers/callback';
 // Redux
 import initializeApplication from './actions/initializeApplication';
 
+// Fetch polyfill
+require('es6-promise').polyfill();
+
 // Shopify API
 const ShopifyToken = require('./token');
 
