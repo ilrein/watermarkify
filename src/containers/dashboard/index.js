@@ -11,11 +11,21 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    const { shopifyToken } = this.props.app;
     const query = queryString.parse(this.props.location.search);
-    const checkPassed = this.props.app.shopifyToken.verifyHmac(query);
+    const checkPassed = shopifyToken.verifyHmac(query);
+    console.log(query);
     if (checkPassed) {
       this.setState({
         securityChecksPassed: checkPassed,
+      }, () => {
+        shopifyToken.getAccessToken(query.shop, query.code)
+          .then((token) => {
+            console.log('got token', token);
+          })
+          .catch((err) => {
+            console.log('err', err);
+          })
       });
     }
   }
