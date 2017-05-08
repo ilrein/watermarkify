@@ -25,6 +25,7 @@ class Callback extends Component {
         console.log('checks passed...');
         fetch('https://us-central1-watermarkify.cloudfunctions.net/helloWorld')
           .then(response => response.json())
+          .then(json => console.log(json))
         //   .then(json => console.log(json))
         //   .catch(e => console.log(e));
 
