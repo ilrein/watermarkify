@@ -4,3 +4,4 @@ export const APP_DESCRIPTION = 'Easily add watermarks to any of your product pho
 
 // Actions
 export const INITIALIZE_APPLICATION = 'INITIALIZE_APPLICATION';
+export const RECIEVED_ACCESS_TOKEN = 'RECIEVED_ACCESS_TOKEN';

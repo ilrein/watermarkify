@@ -21,7 +21,8 @@ class Callback extends Component {
         /**
          * We will need to use a cloud function here
          */
-        fetch('https://us-central1-watermarkify.cloudfunctions.net/getAccessToken', {
+
+        fetch('/api/access_token', {
           headers: {
             shared_secret: process.env.REACT_APP_SHARED_SECRET,
             redirect_uri: process.env.REACT_APP_REDIRECT_URI,
@@ -30,18 +31,9 @@ class Callback extends Component {
             code: query.code,
           }
         })
-          .then(response => response.json())
+          .then(data => data.json())
           .then(json => console.log(json))
-          .catch(e => console.log(e));
-
-
-        // shopifyToken.getAccessToken(query.shop, query.code)
-        //   .then((token) => {
-        //     console.log('got token', token);
-        //   })
-        //   .catch((err) => {
-        //     console.log('err', err);
-        //   })
+          .catch(e => window.location.href = '/');
       });
     }
   }
