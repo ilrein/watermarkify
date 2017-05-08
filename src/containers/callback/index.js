@@ -14,7 +14,6 @@ class Callback extends Component {
     const { shopifyToken } = this.props.app;
     const query = queryString.parse(this.props.location.search);
     const checkPassed = shopifyToken.verifyHmac(query);
-    console.log(query);
     if (checkPassed) {
       this.setState({
         securityChecksPassed: checkPassed,
@@ -22,12 +21,18 @@ class Callback extends Component {
         /**
          * We will need to use a cloud function here
          */
-        console.log('checks passed...');
-        fetch('https://us-central1-watermarkify.cloudfunctions.net/helloWorld')
+        fetch('https://us-central1-watermarkify.cloudfunctions.net/getAccessToken', {
+          headers: {
+            shared_secret: process.env.REACT_APP_SHARED_SECRET,
+            redirect_uri: process.env.REACT_APP_REDIRECT_URI,
+            api_key: process.env.REACT_APP_API_KEY,
+            hostname: query.shop,
+            code: query.code,
+          }
+        })
           .then(response => response.json())
           .then(json => console.log(json))
-        //   .then(json => console.log(json))
-        //   .catch(e => console.log(e));
+          .catch(e => console.log(e));
 
 
         // shopifyToken.getAccessToken(query.shop, query.code)
