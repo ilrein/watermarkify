@@ -18,8 +18,10 @@ app.use('/api/access_token', (req, res) => {
    .catch(e => res.status(500).json({ error: e }));
 })
 
-app.get('*', function (req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log('App started on 3000');
+});

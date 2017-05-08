@@ -4,8 +4,15 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import receivedAccessToken from '../../actions/receivedAccessToken';
 
 class Callback extends Component {
+  static contextTypes = {
+    router: PropTypes.shape({}).isRequired
+  }
+
   state = {
     securityChecksPassed: false,
   }
@@ -18,10 +25,6 @@ class Callback extends Component {
       this.setState({
         securityChecksPassed: checkPassed,
       }, () => {
-        /**
-         * We will need to use a cloud function here
-         */
-
         fetch('/api/access_token', {
           headers: {
             shared_secret: process.env.REACT_APP_SHARED_SECRET,
@@ -32,7 +35,16 @@ class Callback extends Component {
           }
         })
           .then(data => data.json())
-          .then(json => console.log(json))
+          .then(json => {
+            /**
+             * store token in the store for later use
+             */
+            this.props.receivedAccessToken(json);
+            /**
+             * redirect now that we have access
+             */
+            this.context.router.history.push('/dashboard');
+          })
           .catch(e => window.location.href = '/');
       });
     }
@@ -41,7 +53,7 @@ class Callback extends Component {
   render() {
     return (
       this.state.securityChecksPassed ?
-        <div>callback</div> :
+        <div>Registering application...</div> :
         <div>Security checks failed. Access denied.</div>
     );
   }
@@ -51,4 +63,13 @@ const mapStateToProps = state => ({
   app: state.app,
 });
 
-export default connect(mapStateToProps)(Callback);
+const mapDispatchToProps = dispatch => ({
+  receivedAccessToken(token) {
+    dispatch(receivedAccessToken(token))
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Callback);

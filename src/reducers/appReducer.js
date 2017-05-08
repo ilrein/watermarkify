@@ -1,6 +1,6 @@
 import {
   INITIALIZE_APPLICATION,
-  RECIEVED_ACCESS_TOKEN,
+  RECEIVED_ACCESS_TOKEN,
 } from '../constants';
 
 export default (state = {
@@ -13,7 +13,7 @@ export default (state = {
         ...state,
         shopifyToken: action.payload,
       }
-    case RECIEVED_ACCESS_TOKEN:
+    case RECEIVED_ACCESS_TOKEN:
       return {
         ...state,
         accessToken: action.payload,
